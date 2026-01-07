@@ -1,0 +1,43 @@
+- npm i morgan 
+- npm i express
+- npm i nodemon thay doi ngay tren server
+- npm i node-sass
+-npm install express-handlebars
+
+├── app.js
+└── views
+    ├── home.handlebars
+    └── layouts
+        └── main.handlebars
+
+2 directories, 3 files
+
+import express from 'express';
+import { engine } from 'express-handlebars';
+
+const app = express();
+
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
+
+app.get('/', (req, res) => {
+    res.render('home');
+});
+
+app.listen(3000);
+
+
+├── resources
+│   └── views
+│       ├── layouts/
+│       │   └── main.handlebars
+│       ├── home.handlebars
+│       └── partials/  <-- THƯ MỤC BẮT BUỘC
+│           ├── header.handlebars  <-- Dành cho {{> header}}
+│           └── footer.handlebars  <-- Dành cho {{> footer}}
+
+
+vao scripts trong package json
+"watch": "sass src/resources/scss/app.scss src/public/css/app.css"
+npm run watch
