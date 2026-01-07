@@ -41,3 +41,12 @@ app.listen(3000);
 vao scripts trong package json
 "watch": "sass src/resources/scss/app.scss src/public/css/app.css"
 npm run watch
+
+cài prettier
+npm i prettier lint-stage husky --save-dev
+
+
+- vào package.json cài scripts là beautiful
+prettier --single-quote --trailing-comma all --tab-width 4 --write \"src/**/*.{js,json,scss}\"
+
+- lint-staged dùng để sửa code khi đã add .
