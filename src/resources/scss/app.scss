@@ -1,9 +1,13 @@
-@import 'variables';
+@import "variables";
 .test {
-    font-size: 1rem;
-    background-color: red;
-    font-weight: 300;
+  font-size: 1rem;
+  background-color: red;
+  font-weight: 300;
 }
 h1 {
-    color: $orange-color;
+  color: $orange-color;
+}
+
+.card-course-item {
+  margin: 16px;
 }

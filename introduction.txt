@@ -50,3 +50,11 @@ npm i prettier lint-stage husky --save-dev
 prettier --single-quote --trailing-comma all --tab-width 4 --write \"src/**/*.{js,json,scss}\"
 
 - lint-staged dùng để sửa code khi đã add .
+
+-- npm run beautiful
+
+-- npm i mongoose // tạo giao tiếp model giữa server và csdl
+
+-- npm mongoose-slug-generator
+
+npm install slugify // phiên bản nhẹ hơn chuẩn bền
