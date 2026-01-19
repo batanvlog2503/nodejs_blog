@@ -1,10 +1,11 @@
 const newsRouter = require("./news")
 const siteRouter = require("./site")
 const coursesRouter = require("./courses")
+const meRouter = require("./me")
 function route(app) {
   app.use("/news", newsRouter) // hiểu đơn giản đây là root của 1 đường dẫn nào đó
   // còn các file js khác liên quan đến newsRouter sẽ đi các đường tiếp theo với gốc là /news
-
+  app.use("/me", meRouter)
   app.use("/", siteRouter)
 
   app.use("/courses", coursesRouter)

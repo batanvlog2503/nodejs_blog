@@ -1,0 +1,29 @@
+<div class="mt-4">
+  <h2>Khóa Học Của Tôi</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tên Khóa Học</th>
+        <th scope="col">Trình độ</th>
+        <th scope="col">Thời Gian Tạo</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each course}}
+        <tr>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{this.level}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+            <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+            {{! đường dẫn chuẩn trong url thêm localhost:3000 }}
+            <a href="" class="btn btn-link">Xóa</a>
+          </td>
+        </tr>
+      {{/each}}
+
+    </tbody>
+  </table>
+</div>

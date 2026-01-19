@@ -8,4 +8,20 @@ h1 {
   color: orange;
 }
 
+.card-course-item {
+  margin: 16px;
+}
+
+.card-course-item {
+  height: 200px;
+}
+
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 4px;
+  font-size: 20px;
+}
+
 /*# sourceMappingURL=app.css.map */

@@ -58,3 +58,13 @@ prettier --single-quote --trailing-comma all --tab-width 4 --write \"src/**/*.{j
 -- npm mongoose-slug-generator
 
 npm install slugify // phiên bản nhẹ hơn chuẩn bền
+
+
+
+muốn tạo hàm trong express handlebars
+tạo helpers.js để tạo hàm custom mà mình muốn 
+rồi ném vào engine helpers:helper
+
+
+-- npm install method-override
+dùng để có thể thêm put deleete

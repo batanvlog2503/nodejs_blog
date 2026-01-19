@@ -32,6 +32,22 @@ class CourseController {
     res.render("courses/create")
   }
 
+  // [GET] to update //courses/edit
+  async edit(req, res, next) {
+    // tại UI để hiện ra form thôi
+    // res.render("courses/edit")
+
+    try {
+      const course = await Course.findById(req.params.id)
+      if (!course) {
+        return res.status(404).render("error/404")
+      }
+      res.render("courses/edit", { course: mongooseToObject(course) })
+    } catch (error) {
+      next(error)
+    }
+  }
+
   //[POST] // courses/store
 
   async store(req, res, next) {
@@ -51,6 +67,21 @@ class CourseController {
     } catch (error) {
       next(error)
     }
+  }
+
+  // [PUT] update   //course/:id
+
+  async update(req, res, next) {
+    try {
+      const formData = req.body
+
+      const course = await Course.updateOne({ _id: req.params.id }, req.body) // (id, object)
+
+      res.redirect("/me/stored/courses")
+    } catch (error) {
+      next(error)
+    }
+    // res.json(req.body)
   }
 }
 
