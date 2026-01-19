@@ -15,5 +15,9 @@ const Course = new Schema(
     timestamps: true, //tự tọa createdAt, updateAt
   },
 )
+// code: Schema.plugin(mongooseDelete)
+// add plugin
+const mongooseDelete = require("mongoose-delete")
+Course.plugin(mongooseDelete, { deletedAt: true, overrideMethods: "all" }) // sử dụng moongoseDelte
 
 module.exports = mongoose.model("Course", Course)

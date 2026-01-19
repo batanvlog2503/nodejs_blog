@@ -68,3 +68,6 @@ rồi ném vào engine helpers:helper
 
 -- npm install method-override
 dùng để có thể thêm put deleete
+
+
+npm i mongoose-delete

@@ -87,12 +87,29 @@ class CourseController {
   //[DELETE] /course/:id
   async delete(req, res, next) {
     try {
-      const course = await Course.deleteOne({_id:req.params.id} )
+      const course = await Course.delete({ _id: req.params.id }) // có sử dụng xóa mềm
       res.redirect("/me/stored/courses")
     } catch (error) {
       next(error)
     }
+  }
+  async force(req, res, next) {
+    try {
+      const course = await Course.deleteOne({ _id: req.params.id }) // xóa thật
+      res.redirect("/me/stored/courses")
+    } catch (error) {
+      next(error)
     }
   }
+
+  async restore(req, res, next) {
+    try {
+      const course = await Course.restore({ _id: req.params.id })
+      res.redirect("/me/stored/courses")
+    } catch (error) {
+      next(error)
+    }
+  }
+}
 
 module.exports = new CourseController()

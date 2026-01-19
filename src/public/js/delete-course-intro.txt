@@ -1,0 +1,32 @@
+var mongoose_delete = require('mongoose-delete');
+
+var PetSchema = new Schema({
+    name: String
+});
+
+PetSchema.plugin(mongoose_delete);
+
+var Pet = mongoose.model('Pet', PetSchema);
+
+var fluffy = new Pet({ name: 'Fluffy' });
+
+fluffy.save(function () {
+    // mongodb: { deleted: false, name: 'Fluffy' }
+
+    // note: you should invoke exactly delete() method instead of standard fluffy.remove()
+    fluffy.delete(function () {
+        // mongodb: { deleted: true, name: 'Fluffy' }
+
+        fluffy.restore(function () {
+            // mongodb: { deleted: false, name: 'Fluffy' }
+        });
+    });
+
+});
+
+var examplePetId = mongoose.Types.ObjectId("53da93b16b4a6670076b16bf");
+
+// INFO: Example usage of deleteById static method
+Pet.deleteById(examplePetId, function (err, petDocument) {
+    // mongodb: { deleted: true, name: 'Fluffy', _id: '53da93b1...' }
+});

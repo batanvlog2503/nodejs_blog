@@ -1,7 +1,7 @@
 <div class="mt-4">
   <div>
     <h2>Khóa Học Của Tôi</h2>
-    <a href="/me/trashed/courses">Khóa Học Đã Xóa</a>
+    <a href="/me/stored/courses">Danh sách khóa học</a>
   </div>
   <table class="table">
     <thead>
@@ -20,7 +20,11 @@
           <td>{{this.level}}</td>
           <td>{{this.createdAt}}</td>
           <td>
-            <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+            <a
+              href="/courses/{{this._id}}/restore"
+              class="btn btn-link btn-restore"
+              data-id="{{this._id}}"
+            >Khôi Phục</a>
             {{! đường dẫn chuẩn trong url thêm localhost:3000 }}
             <a
               href=""
@@ -28,7 +32,7 @@
               data-toggle="modal"
               data-target="#delete-course-modal"
               data-id="{{this._id}}"
-            >Xóa</a>
+            >Xóa Vĩnh Viễn</a>
 
             {{! #delete-course-modal huonwsg toiws id cuar modal }}
           </td>
@@ -36,7 +40,7 @@
       {{else}}
         <tr>
           <td colspan="5" class="text-center">
-            không có dữ liệu
+            Thùng rác trống
             <a href="/courses/create">Đăng khóa học ngay và luôn</a>
           </td>
         </tr>
@@ -62,14 +66,14 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>Bạn Chắc chắn muốn xóa khóa học này</p>
+        <p>Hành động này không thể khôi phục. Bạn có muốn xóa??</p>
       </div>
       <div class="modal-footer">
         <button
           id="btn-delete-course"
           type="button"
-          class="btn btn-danger"
-        >Xóa</button>
+          class="btn btn-danger btn-force-delete"
+        >Xóa Vĩnh Viễn</button>
         <button
           type="button"
           class="btn btn-primary"
@@ -82,12 +86,12 @@
 
 {{! DELETE form }}
 
-<form
-  name="delete-course-form"
-  method="POST"
-  action="/courses/{{course._id}}?_method=DELETE"
->
+{{! <form name="force-delete-course-form" method="POST"> }}
+<form name="delete-course-form" method="POST">
+
 </form>
+{{! UPdate Form }}
+<form name="restore-course-form" method="POST"></form>
 <script src="/js/delete-course.js">
 
 </script>

@@ -6,5 +6,6 @@ const meController = require("../app/controllers/MeController")
 const { model } = require("mongoose")
 
 router.get("/stored/courses", meController.storedCourses) // hiểu đơn giản đât sẽ là đường link
+router.get("/trashed/courses", meController.trashedCourses)
 
 module.exports = router
