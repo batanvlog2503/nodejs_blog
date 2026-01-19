@@ -83,6 +83,16 @@ class CourseController {
     }
     // res.json(req.body)
   }
-}
+
+  //[DELETE] /course/:id
+  async delete(req, res, next) {
+    try {
+      const course = await Course.deleteOne({_id:req.params.id} )
+      res.redirect("/me/stored/courses")
+    } catch (error) {
+      next(error)
+    }
+    }
+  }
 
 module.exports = new CourseController()

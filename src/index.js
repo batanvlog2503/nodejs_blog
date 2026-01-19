@@ -10,12 +10,12 @@ const port = 3000
 const route = require("./routes") // tu tim file index
 const methodOverride = require("method-override")
 
-// override with POST having ?_method=DELETE 
+// override with POST having ?_method=DELETE
 app.use(methodOverride("_method"))
 const helpers = require("../src/helpers/helpers")
 // HTTP logger
 app.use(morgan("combined"))
-app.use(express.static(path.join(__dirname, "public")))
+app.use(express.static(path.join(__dirname, "public"))) // sử dụng file tĩnh xuất ra
 // sử dụng được file scss file tĩnh
 // Template engine setup
 
