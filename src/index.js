@@ -10,8 +10,13 @@ const port = 3000
 const route = require("./routes") // tu tim file index
 const methodOverride = require("method-override")
 
+// SortMiddleWare
+const SortMiddleware = require("./app/middlewares/SortMiddlewares")
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"))
+
+//customer SortMiddleware
+app.use(SortMiddleware)
 const helpers = require("../src/helpers/helpers")
 // HTTP logger
 app.use(morgan("combined"))
@@ -29,6 +34,15 @@ app.set("views", path.join(__dirname, "resources", "views"))
 
 // debug path
 console.log("Views path:", path.join(__dirname, "resources\\views"))
+
+// app.use(bacBaoVe)
+// function bacBaoVe(req, res, next) {
+//   if (["vethuong", "vevip"].includes(req.query.ve)) {
+//     return next()
+//   } else {
+//     res.status(403).json({ message: "Access Denied" })
+//   }
+// }
 
 // app.get("/", (req, res) => {
 //   return res.send(`
@@ -52,5 +66,6 @@ console.log("Views path:", path.join(__dirname, "resources\\views"))
 //   console.log(req.body) // sử dụng vói post là body
 //   res.send("")
 // })
+
 route(app)
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`))

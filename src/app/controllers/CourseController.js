@@ -110,6 +110,16 @@ class CourseController {
       next(error)
     }
   }
+
+  // [POST] /courses/handle-form-actions
+  async handleFormActions(req, res, next) {
+    try {
+      const course = await Course.delete({ _id: { $in: req.body.courseIds } }) // soft delete
+      res.redirect("/me/stored/courses")
+    } catch (error) {
+      next(error)
+    }
+  }
 }
 
 module.exports = new CourseController()

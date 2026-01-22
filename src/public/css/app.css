@@ -24,4 +24,8 @@ h1 {
   font-size: 20px;
 }
 
+.checkbox-select-all-options {
+  width: 160px !important;
+}
+
 /*# sourceMappingURL=app.css.map */

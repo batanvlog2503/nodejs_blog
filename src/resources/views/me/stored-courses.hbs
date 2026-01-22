@@ -1,93 +1,131 @@
-<div class="mt-4">
-  <div>
-    <h2>Khóa Học Của Tôi</h2>
-    <a href="/me/trashed/courses">Khóa Học Đã Xóa</a>
-  </div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Tên Khóa Học</th>
-        <th scope="col">Trình độ</th>
-        <th scope="col">Thời Gian Tạo</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each course}}
-        <tr>
-          <th scope="row">{{sum @index 1}}</th>
-          <td>{{this.name}}</td>
-          <td>{{this.level}}</td>
-          <td>{{this.createdAt}}</td>
-          <td>
-            <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
-            {{! đường dẫn chuẩn trong url thêm localhost:3000 }}
-            <a
-              href=""
-              class="btn btn-link"
-              data-toggle="modal"
-              data-target="#delete-course-modal"
-              data-id="{{this._id}}"
-            >Xóa</a>
+  <form class="mt-4" name = "container-form" method="POST" action="/courses/handle-form-actions">
+    <div>
+      <h2>Khóa Học Của Tôi</h2>
+      <a href="/me/trashed/courses">Khóa Học Đã Xóa {{deletedCourse}}</a>
 
-            {{! #delete-course-modal huonwsg toiws id cuar modal }}
-          </td>
-        </tr>
-      {{else}}
-        <tr>
-          <td colspan="5" class="text-center">
-            không có dữ liệu
-            <a href="/courses/create">Đăng khóa học ngay và luôn</a>
-          </td>
-        </tr>
-      {{/each}}
-
-    </tbody>
-  </table>
-</div>
-{{! Confirm }}
-
-<div id="delete-course-modal" class="modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
+      <div class="mt-4 d-flex align-items-center justify-content-between">
+        <div class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="checkbox-all"
+            value=""
+          />
+          <label class="form-check-label" for="checkbox-all">Chọn Tất Cả</label>
+        </div>
+        <select
+          class="form-control form-control-sm checkbox-select-all-options"
+          name = "action"
+          required
         >
-          <span aria-hidden="true">&times;</span>
-        </button>
+          <option value =  "">--chọn hành động</option>
+          <option value="delete">Xóa</option>
+
+        </select>
+        <button class=" btn btn-primary btn-sm check-all-submit-btn" disabled>Thực Hiện</button>
       </div>
-      <div class="modal-body">
-        <p>Bạn Chắc chắn muốn xóa khóa học này</p>
-      </div>
-      <div class="modal-footer">
-        <button
-          id="btn-delete-course"
-          type="button"
-          class="btn btn-danger"
-        >Xóa</button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-dismiss="modal"
-        >Hủy</button>
+    </div>
+    {{_sort.type}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col" colspan="
+          2">#</th>
+          <th scope="col">Tên Khóa Học
+            {{{sortable 'name' _sort}}} </th>
+          <th scope="col">Trình độ
+            {{{sortable 'level' _sort}}}
+          </th>
+          <th scope="col">Thời Gian Tạo 
+            {{{sortable 'createdAt' _sort}}}<i class="fa-solid fa-elevator"></i></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each course}}
+          <tr>
+            <td>
+              <div class="form-check">
+              <input
+                type="checkbox"
+                class="form-check-input"
+                name="courseIds[]"
+                
+                value="{{this._id}}"
+              />
+            </td>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.level}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+              <a href="/courses/{{this._id}}/edit" class="btn btn-link">Sửa</a>
+              {{! đường dẫn chuẩn trong url thêm localhost:3000 }}
+              <a
+                href=""
+                class="btn btn-link"
+                data-toggle="modal"
+                data-target="#delete-course-modal"
+                data-id="{{this._id}}"
+              >Xóa</a>
+
+              {{! #delete-course-modal huonwsg toiws id cuar modal }}
+            </td>
+          </tr>
+        {{else}}
+          <tr>
+            <td colspan="5" class="text-center">
+              không có dữ liệu
+              <a href="/courses/create">Đăng khóa học ngay và luôn</a>
+            </td>
+          </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </form>
+  {{! Confirm }}
+
+  <div id="delete-course-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Bạn Chắc chắn muốn xóa khóa học này</p>
+        </div>
+        <div class="modal-footer">
+          <button
+            id="btn-delete-course"
+            type="button"
+            class="btn btn-danger"
+          >Xóa</button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-dismiss="modal"
+          >Hủy</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-{{! DELETE form }}
+  {{! DELETE form }}
 
-<form
-  name="delete-course-form"
-  method="POST"
-  action="/courses/{{course._id}}?_method=DELETE"
->
-</form>
-<script src="/js/delete-course.js">
+  <form
+    name="delete-course-form"
+    method="POST"
+    action="/courses/{{course._id}}?_method=DELETE"
+  >
+  </form>
+  <script src="/js/delete-course.js">
 
-</script>
+  </script>

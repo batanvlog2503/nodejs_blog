@@ -71,3 +71,61 @@ dùng để có thể thêm put deleete
 
 
 npm i mongoose-delete
+
+-- middleware
+🧠 Middleware là gì?
+
+Middleware là một hàm đứng ở giữa request và response
+
+Luồng xử lý:
+
+Client → Middleware → Middleware → Route → Response
+
+
+Middleware có thể:
+
+Xử lý request
+
+Thay đổi request / response
+
+Dừng request
+
+Chuyển sang middleware tiếp theo
+
+✋ Middleware làm được những gì?
+
+Middleware có thể:
+
+Kiểm tra đăng nhập
+
+Validate dữ liệu
+
+Parse body
+
+Ghi log
+
+Bắt lỗi
+
+Phân quyền
+
+
+# middleware
+
+### ý nghĩa 
+-   Phần mềm trung gian( đứng giữa các thành phần trong mô hình phần mềm)
+
+Brower(client) ===========request=============> server(NodeJS)
+Brower(client) <=============response=========== server(NodeJS)
+
+### vai trò
+-- giống bác bảo vệ
+
+-- kiểm tra validation khi gửi lên server
+-- validation passed-> cho vào
+
+
+### ứng dụng
+-- dựng chức năng xác thực authentication
+-- phan quyền authorization
+--  để chia sẻ các giá trị của biến tới tất cả các views
+
